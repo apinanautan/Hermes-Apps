@@ -82,7 +82,6 @@ class _WebViewScreenState extends State<WebViewScreen>
           initialUrlRequest: URLRequest(
             url: WebUri('https://desktop-f1pjt4s.tail33680a.ts.net/#/hermes/chat'),
           ),
-          keepAlive: _keepAlive,
           initialSettings: InAppWebViewSettings(
             javaScriptEnabled: true,
             domStorageEnabled: true,
