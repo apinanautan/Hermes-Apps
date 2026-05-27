@@ -51,7 +51,6 @@ class WebViewScreen extends StatefulWidget {
 
 class _WebViewScreenState extends State<WebViewScreen>
     with WidgetsBindingObserver {
-  final InAppWebViewKeepAlive _keepAlive = InAppWebViewKeepAlive();
   InAppWebViewController? _webViewController;
 
   @override
@@ -81,7 +80,7 @@ class _WebViewScreenState extends State<WebViewScreen>
       body: SafeArea(
         child: InAppWebView(
           initialUrlRequest: URLRequest(
-            url: WebUri('http://100.71.112.50:8648/#/hermes/chat'),
+            url: WebUri('https://desktop-f1pjt4s.tail33680a.ts.net/#/hermes/chat'),
           ),
           keepAlive: _keepAlive,
           initialSettings: InAppWebViewSettings(
@@ -92,7 +91,7 @@ class _WebViewScreenState extends State<WebViewScreen>
             useHybridComposition: true,
             allowsInlineMediaPlayback: true,
             minimumFontSize: 16,
-            cacheMode: CacheMode.LOAD_CACHE_ELSE_NETWORK,
+            cacheMode: CacheMode.LOAD_DEFAULT,
             clearCache: false,
             useShouldOverrideUrlLoading: true,
             isInspectable: true,
