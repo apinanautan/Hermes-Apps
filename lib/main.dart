@@ -80,7 +80,7 @@ class _WebViewScreenState extends State<WebViewScreen>
       body: SafeArea(
         child: InAppWebView(
           initialUrlRequest: URLRequest(
-            url: WebUri('https://desktop-f1pjt4s.tail33680a.ts.net/#/hermes/chat'),
+            url: WebUri('http://100.71.112.50:8648/#/hermes/chat'),
           ),
           initialSettings: InAppWebViewSettings(
             javaScriptEnabled: true,
