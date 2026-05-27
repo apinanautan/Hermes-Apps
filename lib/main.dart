@@ -52,7 +52,6 @@ class WebViewScreen extends StatefulWidget {
 class _WebViewScreenState extends State<WebViewScreen>
     with WidgetsBindingObserver {
   InAppWebViewController? _webViewController;
-  bool _isLoading = true;
 
   @override
   void initState() {
@@ -79,46 +78,35 @@ class _WebViewScreenState extends State<WebViewScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Stack(
-          children: [
-            InAppWebView(
-              initialUrlRequest: URLRequest(
-                url: WebUri('https://desktop-f1pjt4s.tail33680a.ts.net/#/hermes/chat'),
-              ),
-              initialSettings: InAppWebViewSettings(
-                javaScriptEnabled: true,
-                domStorageEnabled: true,
-                thirdPartyCookiesEnabled: true,
-                mediaPlaybackRequiresUserGesture: false,
-                useHybridComposition: true,
-                allowsInlineMediaPlayback: true,
-                minimumFontSize: 16,
-                cacheMode: CacheMode.LOAD_DEFAULT,
-                isInspectable: true,
-              ),
-              onWebViewCreated: (controller) {
-                _webViewController = controller;
-              },
-              onLoadStart: (controller, url) {
-                setState(() => _isLoading = true);
-              },
-              onLoadStop: (controller, url) async {
-                setState(() => _isLoading = false);
-              },
-              onLoadError: (controller, url, code, message) {
-                setState(() => _isLoading = false);
-              },
-            ),
-            if (_isLoading)
-              Container(
-                color: Colors.white.withOpacity(0.9),
-                child: const Center(
-                  child: CircularProgressIndicator(
-                    color: Color(0xFF007AFF),
-                  ),
-                ),
-              ),
-          ],
+        child: InAppWebView(
+          initialUrlRequest: URLRequest(
+            url: WebUri('https://desktop-f1pjt4s.tail33680a.ts.net/#/hermes/chat'),
+          ),
+          initialSettings: InAppWebViewSettings(
+            javaScriptEnabled: true,
+            domStorageEnabled: true,
+            thirdPartyCookiesEnabled: true,
+            supportsZoom: false,
+            mediaPlaybackRequiresUserGesture: false,
+            useHybridComposition: true,
+            allowsInlineMediaPlayback: true,
+            minimumFontSize: 16,
+            // --- Optimization for Speed ---
+            cacheMode: CacheMode.LOAD_CACHE_ELSE_NETWORK,
+            clearCache: false,
+            useShouldOverrideUrlLoading: true,
+            isInspectable: true,
+            // -----------------------------
+          ),
+          onWebViewCreated: (controller) {
+            _webViewController = controller;
+          },
+          onLoadStart: (controller, url) {
+            // Removed loading overlay for faster perceived performance
+          },
+          onLoadStop: (controller, url) async {
+            // Done
+          },
         ),
       ),
     );
