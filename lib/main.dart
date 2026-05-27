@@ -86,7 +86,6 @@ class _WebViewScreenState extends State<WebViewScreen>
             javaScriptEnabled: true,
             domStorageEnabled: true,
             thirdPartyCookiesEnabled: true,
-            supportsZoom: false,
             mediaPlaybackRequiresUserGesture: false,
             useHybridComposition: true,
             allowsInlineMediaPlayback: true,
